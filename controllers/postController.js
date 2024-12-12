@@ -36,7 +36,7 @@ const show = (req, res) => {
 
 }
 
-const create = (req, res) => {
+const create = (req, res) => {  
     res.send("qui aggiungo un nuovo post")
 }
 

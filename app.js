@@ -6,6 +6,9 @@ const postsRouter = require("./routers/posts")
 
 app.use(express.static("public"))
 
+//includere il body-parser per leggere il req.body sempre prima del router
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.json({
         message: "Server del mio blog"
