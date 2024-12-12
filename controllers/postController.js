@@ -55,8 +55,20 @@ const create = (req, res) => {
 }
 
 const update = (req, res) => {
-    const postsID = req.params.id;
-    res.send("qui aggiorno tutti i dati di un post con id " + "numero " + postsID)
+    const postsID = parseInt(req.params.id);
+    const newData = req.body;
+    //aggiungo la key id a newData
+    newData.id = postsID;
+    //trovo indice da trovare
+    const indexUpdated = posts.findIndex((curPost) => curPost.id === postsID)
+    console.log(indexUpdated);
+    //sostitusci vecchio con nuovo elemento
+    posts[indexUpdated] = newData;
+    
+    console.log(newData);
+    
+    res.json(newData)
+    //res.send("qui aggiorno tutti i dati di un post con id " + "numero " + postsID)
 }
 
 const modify = (req, res) => {
