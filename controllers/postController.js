@@ -37,7 +37,21 @@ const show = (req, res) => {
 }
 
 const create = (req, res) => {  
-    res.send("qui aggiungo un nuovo post")
+    console.log(req.body);
+    
+    const newPost = req.body;
+    //calcolo id 
+    newPost.id = posts[posts.length - 1].id + 1;
+    console.log(newPost.id)
+    
+    //pusho loggetto nel array
+    posts.push(newPost);
+    console.log(posts);
+    
+    //restituiamo stato coretto e elemnto aggiunto
+    res.status(201);
+    res.json(newPost)
+    //res.send("qui aggiungo un nuovo post")
 }
 
 const update = (req, res) => {
