@@ -62,13 +62,22 @@ const update = (req, res) => {
     //trovo indice da trovare
     const indexUpdated = posts.findIndex((curPost) => curPost.id === postsID)
     console.log(indexUpdated);
-    //sostitusci vecchio con nuovo elemento
-    posts[indexUpdated] = newData;
-    
-    console.log(newData);
-    
-    res.json(newData)
-    //res.send("qui aggiorno tutti i dati di un post con id " + "numero " + postsID)
+    //gestione errore notFound
+    if(indexUpdated === -1){
+        res.statusCode = 404;
+        res.json({
+            error: true,
+            message: "post non esistente"
+        })
+    } else {
+        
+        //sostitusci vecchio con nuovo elemento
+        posts[indexUpdated] = newData;
+        
+        console.log(newData);
+        
+        res.json(newData)
+    }
 }
 
 const modify = (req, res) => {
