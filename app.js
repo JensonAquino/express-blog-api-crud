@@ -3,9 +3,16 @@ const app = express()
 const port = 3003;
 const postsRouter = require("./routers/posts")
 //const posts = require("./data") importato nel router
-
+//cors aggiunto
+const corsMiddleware = require("cors")
 //middlewere globale a livello globale
 const handleError = require("./middlewares/handleError");
+
+// Diamo il permesso a questo indirizzo di richiedere i dati
+app.use(corsMiddleware({
+    origin: 'http://localhost:5174'
+  }));
+  
 
 //includere il body-parser per leggere il req.body sempre prima del router
 app.use(express.json());
